@@ -151,4 +151,17 @@ const { title, description, image, url, status, id, tags = [] } = Astro.props;
     .btn-project:hover {
         gap: 0.75rem;
     }
+    @media (max-width: 480px) {
+        .content {
+            padding: 1.25rem;
+        }
+
+        h3 {
+            font-size: 1.35rem;
+        }
+
+        .status-badge {
+            font-size: 0.7rem;
+        }
+    }
 </style>
