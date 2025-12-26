@@ -1,0 +1,308 @@
+---
+const currentYear = new Date().getFullYear();
+const email = "michal@srjrgames.com";
+const twitch = "https://www.twitch.tv/srjrgames";
+const youtube = "https://www.youtube.com/@SrJrGames";
+---
+
+<footer class="footer">
+    <div class="container footer-grid">
+        <div class="footer-brand">
+            <a href="/" class="footer-logo">
+                <img src="/avatar.jpg" alt="Sr. Jr. Games Logo" />
+                <span>Sr. Jr. Games</span>
+            </a>
+            <p class="footer-description">
+                Creating fun and educational games, one pixel at a time. A
+                father and son game dev journey.
+            </p>
+        </div>
+
+        <div class="footer-links">
+            <h4>Explore</h4>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/projects">Projects</a></li>
+                <li><a href="/blog">Blog</a></li>
+                <li><a href="/about">About</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-social">
+            <h4>Connect</h4>
+            <div class="social-icons">
+                <a
+                    href={twitch}
+                    target="_blank"
+                    aria-label="Twitch"
+                    class="social-icon"
+                >
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        ><path d="M21 2H3v16h5v4l4-4h5l4-4V2zm-10 9V7m5 4V7"
+                        ></path></svg
+                    >
+                </a>
+                <a
+                    href={youtube}
+                    target="_blank"
+                    aria-label="YouTube"
+                    class="social-icon"
+                >
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        ><path
+                            d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.42a2.78 2.78 0 0 0-1.94 2C1 8.14 1 12 1 12s0 3.86.42 5.58a2.78 2.78 0 0 0 1.94 2c1.71.42 8.6.42 8.6.42s6.88 0 8.6-.42a2.78 2.78 0 0 0 1.94-2C23 15.86 23 12 23 12s0-3.86-.42-5.58z"
+                        ></path><polygon
+                            points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"
+                        ></polygon></svg
+                    >
+                </a>
+                <a
+                    href={`mailto:${email}`}
+                    aria-label="Email"
+                    class="social-icon"
+                >
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        ><rect width="20" height="16" x="2" y="4" rx="2"
+                        ></rect><path
+                            d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"
+                        ></path></svg
+                    >
+                </a>
+            </div>
+            <a href="/contact" class="btn-footer-contact">Get in Touch</a>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <div class="container bottom-content">
+            <p>&copy; {currentYear} Sr. Jr. Games. All rights reserved.</p>
+            <p class="tagline">Made with ❤️ and 🎮 by a Dad and his Boy</p>
+        </div>
+    </div>
+</footer>
+
+<style>
+    .footer {
+        background-color: var(--color-navy-dark);
+        color: var(--color-white);
+        padding: 5rem 0 2rem;
+        margin-top: 5rem;
+        position: relative;
+        overflow: hidden;
+    }
+
+    /* Add a playful wave or zig-zag top border if desired, but keeping it clean for now */
+    .footer::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 8px;
+        background: linear-gradient(
+            90deg,
+            var(--color-red),
+            var(--color-yellow)
+        );
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+    }
+
+    .footer-grid {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr;
+        gap: 4rem;
+        margin-bottom: 4rem;
+    }
+
+    /* Brand Section */
+    .footer-brand {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .footer-logo {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        font-family: var(--font-accent);
+        font-weight: 800;
+        font-size: 1.5rem;
+        color: var(--color-white);
+    }
+
+    .footer-logo img {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        border: 2px solid var(--color-yellow);
+    }
+
+    .footer-description {
+        color: rgba(255, 255, 255, 0.7);
+        line-height: 1.6;
+        max-width: 350px;
+        font-size: 1rem;
+    }
+
+    /* Links Section */
+    .footer-links h4,
+    .footer-social h4 {
+        color: var(--color-yellow);
+        font-family: var(--font-accent);
+        font-size: 1.25rem;
+        margin-bottom: 1.5rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+
+    .footer-links ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .footer-links a {
+        color: rgba(255, 255, 255, 0.8);
+        font-weight: 600;
+        transition: all 0.2s ease;
+    }
+
+    .footer-links a:hover {
+        color: var(--color-red);
+        padding-left: 5px;
+    }
+
+    /* Social Section */
+    .footer-social {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .social-icons {
+        display: flex;
+        gap: 1rem;
+    }
+
+    .social-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: var(--radius-sm);
+        color: var(--color-white);
+        transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        border: 2px solid transparent;
+    }
+
+    .social-icon:hover {
+        background: var(--color-red);
+        transform: translateY(-5px);
+        border-color: var(--color-white);
+    }
+
+    .btn-footer-contact {
+        display: inline-block;
+        background-color: var(--color-yellow);
+        color: var(--color-navy);
+        padding: 0.75rem 1.5rem;
+        border-radius: var(--radius-sm);
+        font-weight: 800;
+        font-family: var(--font-accent);
+        text-align: center;
+        border: 2px solid var(--color-navy);
+        box-shadow: 4px 4px 0 var(--color-white);
+        transition: all 0.2s ease;
+    }
+
+    .btn-footer-contact:hover {
+        transform: translate(-2px, -2px);
+        box-shadow: 6px 6px 0 var(--color-white);
+        background-color: var(--color-white);
+    }
+
+    /* Bottom Section */
+    .footer-bottom {
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        padding-top: 2rem;
+    }
+
+    .bottom-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: rgba(255, 255, 255, 0.5);
+        font-size: 0.9rem;
+    }
+
+    .tagline {
+        font-style: italic;
+    }
+
+    @media (max-width: 968px) {
+        .footer-grid {
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .footer-brand {
+            grid-column: span 2;
+        }
+    }
+
+    @media (max-width: 640px) {
+        .footer-grid {
+            grid-template-columns: 1fr;
+            gap: 2.5rem;
+        }
+
+        .footer-brand {
+            grid-column: span 1;
+        }
+
+        .bottom-content {
+            flex-direction: column;
+            gap: 1rem;
+            text-align: center;
+        }
+    }
+</style>
