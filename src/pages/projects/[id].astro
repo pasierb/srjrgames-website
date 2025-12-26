@@ -1,0 +1,308 @@
+---
+import { getCollection, render } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+
+export async function getStaticPaths() {
+    const projects = await getCollection("projects");
+    return projects.map((project) => ({
+        params: { id: project.id },
+        props: { project },
+    }));
+}
+
+const { project } = Astro.props;
+const { Content } = await render(project);
+---
+
+<Layout>
+    <article class="project-detail">
+        <header class="project-header">
+            <div class="container">
+                <a href="/projects" class="back-link">
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        ><path d="m15 18-6-6 6-6"></path></svg
+                    >
+                    Back to Projects
+                </a>
+                <div class="header-content">
+                    <div class="meta">
+                        <span class="status-badge">{project.data.status}</span>
+                        <div class="tags">
+                            {
+                                project.data.tags.map((tag) => (
+                                    <span class="tag">{tag}</span>
+                                ))
+                            }
+                        </div>
+                    </div>
+                    <h1>{project.data.title}</h1>
+                    <p class="description">{project.data.description}</p>
+                </div>
+            </div>
+        </header>
+
+        <div class="container main-content">
+            <div class="project-layout">
+                <div class="project-body">
+                    <div class="featured-image">
+                        <img
+                            src={project.data.image}
+                            alt={project.data.title}
+                        />
+                    </div>
+                    <div class="content">
+                        <Content />
+                    </div>
+                </div>
+
+                <aside class="project-sidebar">
+                    <div class="sidebar-card">
+                        <h3>Project Info</h3>
+                        <div class="info-group">
+                            <label>Status</label>
+                            <span>{project.data.status}</span>
+                        </div>
+                        {
+                            project.data.url !== "#" && (
+                                <a
+                                    href={project.data.url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="btn-primary"
+                                >
+                                    Visit Official Link
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        width="20"
+                                        height="20"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        stroke-width="2"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                    >
+                                        <>
+                                            <path d="M15 3h6v6" />
+                                            <path d="M10 14 21 3" />
+                                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                                        </>
+                                    </svg>
+                                </a>
+                            )
+                        }
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </article>
+</Layout>
+
+<style>
+    .project-detail {
+        padding-bottom: 8rem;
+    }
+
+    .project-header {
+        padding: 4rem 0;
+        background: var(--color-white);
+        border-bottom: 3px solid var(--color-navy);
+        margin-bottom: 4rem;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+    }
+
+    .back-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--color-navy);
+        font-weight: 600;
+        margin-bottom: 2rem;
+        font-family: var(--font-accent);
+    }
+
+    .back-link:hover {
+        color: var(--color-red);
+        transform: translateX(-4px);
+    }
+
+    .meta {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .status-badge {
+        font-size: 0.85rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        padding: 0.3rem 0.8rem;
+        background: var(--color-yellow);
+        color: var(--color-navy);
+        border: 2px solid var(--color-navy);
+        border-radius: var(--radius-sm);
+    }
+
+    .tags {
+        display: flex;
+        gap: 0.5rem;
+    }
+
+    .tag {
+        background: var(--color-bg);
+        color: var(--color-navy);
+        padding: 0.2rem 0.6rem;
+        border-radius: var(--radius-sm);
+        font-size: 0.85rem;
+        font-weight: 600;
+        border: 1px solid var(--color-navy);
+    }
+
+    h1 {
+        font-size: 4rem;
+        margin-bottom: 1.5rem;
+        line-height: 1.1;
+    }
+
+    .description {
+        font-size: 1.5rem;
+        max-width: 800px;
+        color: var(--color-text);
+        line-height: 1.4;
+    }
+
+    .project-layout {
+        display: grid;
+        grid-template-columns: 1fr 300px;
+        gap: 4rem;
+    }
+
+    .featured-image {
+        width: 100%;
+        border-radius: var(--radius-lg);
+        border: 3px solid var(--color-navy);
+        overflow: hidden;
+        margin-bottom: 3rem;
+        box-shadow: 12px 12px 0 var(--color-navy);
+    }
+
+    .featured-image img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    .content {
+        font-size: 1.1rem;
+        line-height: 1.7;
+        color: var(--color-text);
+    }
+
+    .content :global(h2) {
+        font-size: 2rem;
+        margin: 3rem 0 1.5rem;
+    }
+
+    .content :global(p) {
+        margin-bottom: 1.5rem;
+    }
+
+    .sidebar-card {
+        background: var(--color-white);
+        padding: 2rem;
+        border-radius: var(--radius-md);
+        border: 3px solid var(--color-navy);
+        box-shadow: 8px 8px 0 var(--color-navy);
+        position: sticky;
+        top: 2rem;
+    }
+
+    .sidebar-card h3 {
+        font-size: 1.25rem;
+        margin-bottom: 1.5rem;
+        border-bottom: 2px solid var(--color-bg);
+        padding-bottom: 0.5rem;
+    }
+
+    .info-group {
+        margin-bottom: 1.5rem;
+    }
+
+    .info-group label {
+        display: block;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        font-weight: 700;
+        color: var(--color-navy);
+        opacity: 0.6;
+        margin-bottom: 0.25rem;
+    }
+
+    .info-group span {
+        font-weight: 600;
+        font-family: var(--font-accent);
+    }
+
+    .btn-primary {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        background: var(--color-red);
+        color: var(--color-white);
+        padding: 1rem;
+        border-radius: var(--radius-sm);
+        font-weight: 800;
+        font-family: var(--font-accent);
+        text-align: center;
+        border: 2px solid var(--color-navy);
+        box-shadow: 4px 4px 0 var(--color-navy);
+    }
+
+    .btn-primary:hover {
+        transform: translate(-2px, -2px);
+        box-shadow: 6px 6px 0 var(--color-navy);
+    }
+
+    @media (max-width: 992px) {
+        .project-layout {
+            grid-template-columns: 1fr;
+        }
+
+        .project-sidebar {
+            order: -1;
+        }
+
+        .sidebar-card {
+            position: relative;
+            top: 0;
+        }
+
+        h1 {
+            font-size: 3rem;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .meta {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+    }
+</style>

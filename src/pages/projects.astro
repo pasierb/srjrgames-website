@@ -21,7 +21,11 @@ const projects = await getCollection("projects");
 
         <main class="container">
             <div class="project-grid">
-                {projects.map((project) => <ProjectCard {...project.data} />)}
+                {
+                    projects.map((project) => (
+                        <ProjectCard id={project.id} {...project.data} />
+                    ))
+                }
             </div>
         </main>
     </div>
