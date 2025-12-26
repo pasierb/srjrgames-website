@@ -1,0 +1,118 @@
+---
+import Layout from "../layouts/Layout.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+
+const projects = [
+    {
+        title: "Digeon's Quest",
+        description:
+            "A retro-themed pixel art platformer starring a pigeon with a tie. Built with Godot.",
+        image: "/avatar.jpg", // Placeholder until real images are added
+        url: "#",
+        tags: ["Game", "Pixel Art", "Godot"],
+    },
+    {
+        title: "Crayon Chaos",
+        description:
+            "A creative drawing game for kids where your drawings come to life to solve puzzles.",
+        image: "/avatar.jpg",
+        url: "#",
+        tags: ["Game", "Educational", "Phaser"],
+    },
+    {
+        title: "Family Game Dev Pack",
+        description:
+            "A collection of assets and templates to start your own game development journey with your kids.",
+        image: "/avatar.jpg",
+        url: "#",
+        tags: ["Resources", "Templates"],
+    },
+];
+---
+
+<Layout>
+    <div class="projects-page">
+        <header class="page-header">
+            <div class="container">
+                <span class="badge">Our Work</span>
+                <h1>Games & <span class="highlight">Projects</span></h1>
+                <p>
+                    A collection of games we've built together, and resources to
+                    help you build yours.
+                </p>
+            </div>
+        </header>
+
+        <main class="container">
+            <div class="project-grid">
+                {projects.map((project) => <ProjectCard {...project} />)}
+            </div>
+        </main>
+    </div>
+</Layout>
+
+<style>
+    .projects-page {
+        padding-bottom: 8rem;
+    }
+
+    .page-header {
+        padding: 6rem 0 4rem;
+        background: var(--color-white);
+        border-bottom: 3px solid var(--color-navy);
+        margin-bottom: 4rem;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+    }
+
+    .badge {
+        display: inline-block;
+        background: var(--color-navy);
+        color: var(--color-white);
+        padding: 0.4rem 1rem;
+        border-radius: var(--radius-sm);
+        font-size: 0.9rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+    }
+
+    h1 {
+        font-size: 3.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .highlight {
+        color: var(--color-red);
+        background: linear-gradient(
+            180deg,
+            transparent 70%,
+            var(--color-yellow) 70%
+        );
+    }
+
+    p {
+        font-size: 1.25rem;
+        max-width: 600px;
+        color: var(--color-text);
+    }
+
+    .project-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        gap: 3rem;
+    }
+
+    @media (max-width: 768px) {
+        h1 {
+            font-size: 2.5rem;
+        }
+
+        .project-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>

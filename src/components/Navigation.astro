@@ -1,0 +1,88 @@
+---
+
+---
+
+<nav class="nav">
+    <div class="container">
+        <a href="/" class="logo">
+            <img src="/avatar.jpg" alt="Sr. Jr. Games Logo" />
+            <span>Sr. Jr. Games</span>
+        </a>
+        <div class="links">
+            <a href="/projects">Projects</a>
+            <a href="/blog">Blog</a>
+            <a href="/about">About</a>
+            <a href="/contact" class="btn-contact">Contact</a>
+        </div>
+    </div>
+</nav>
+
+<style>
+    .nav {
+        padding: 1.5rem 0;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: rgba(248, 249, 250, 0.8);
+        backdrop-filter: blur(10px);
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .logo {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        font-family: var(--font-accent);
+        font-weight: 800;
+        font-size: 1.5rem;
+        color: var(--color-navy);
+    }
+
+    .logo img {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        border: 2px solid var(--color-navy);
+        box-shadow: var(--shadow-subtle);
+    }
+
+    .links {
+        display: flex;
+        gap: 2rem;
+        align-items: center;
+    }
+
+    .links a {
+        font-weight: 600;
+        color: var(--color-navy);
+        padding: 0.5rem 0;
+        border-bottom: 2px solid transparent;
+    }
+
+    .links a:hover {
+        color: var(--color-red);
+        border-bottom-color: var(--color-red);
+    }
+
+    .btn-contact {
+        background-color: var(--color-yellow);
+        padding: 0.6rem 1.2rem !important;
+        border-radius: var(--radius-sm);
+        border: 2px solid var(--color-navy) !important;
+        box-shadow: 4px 4px 0 var(--color-navy);
+    }
+
+    .btn-contact:hover {
+        transform: translate(-2px, -2px);
+        box-shadow: 6px 6px 0 var(--color-navy);
+        background-color: var(--color-white);
+    }
+</style>

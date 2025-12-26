@@ -1,0 +1,114 @@
+---
+import Layout from "../layouts/Layout.astro";
+import BlogCard from "../components/BlogCard.astro";
+
+const posts = [
+    {
+        title: "Starting our first Godot project together",
+        description:
+            "How we decided on Godot and the first steps of building 'Digeon's Quest'. Tips on keeping it fun for kids.",
+        date: "Dec 20, 2025",
+        author: "Sr.",
+        url: "#",
+    },
+    {
+        title: "Tech education or just playing games?",
+        description:
+            "A deep dive into why game development is the perfect vehicle for teaching programming, logic, and creativity.",
+        date: "Dec 15, 2025",
+        author: "Sr.",
+        url: "#",
+    },
+    {
+        title: "My favorite part of building Digeon",
+        description:
+            "Junior shares his thoughts on designing levels and making sure the pigeon has the right kind of tie.",
+        date: "Dec 10, 2025",
+        author: "Jr.",
+        url: "#",
+    },
+];
+---
+
+<Layout>
+    <div class="blog-page">
+        <header class="page-header">
+            <div class="container">
+                <span class="badge">Insights</span>
+                <h1>The <span class="highlight">Blog</span></h1>
+                <p>
+                    Thoughts on game development, tech education, and the joy of
+                    creating together.
+                </p>
+            </div>
+        </header>
+
+        <main class="container">
+            <div class="blog-list">
+                {posts.map((post) => <BlogCard {...post} />)}
+            </div>
+        </main>
+    </div>
+</Layout>
+
+<style>
+    .blog-page {
+        padding-bottom: 8rem;
+    }
+
+    .page-header {
+        padding: 6rem 0 4rem;
+        background: var(--color-white);
+        border-bottom: 3px solid var(--color-navy);
+        margin-bottom: 4rem;
+    }
+
+    .container {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 0 2rem;
+    }
+
+    .badge {
+        display: inline-block;
+        background: var(--color-navy);
+        color: var(--color-white);
+        padding: 0.4rem 1rem;
+        border-radius: var(--radius-sm);
+        font-size: 0.9rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+    }
+
+    h1 {
+        font-size: 3.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .highlight {
+        color: var(--color-red);
+        background: linear-gradient(
+            180deg,
+            transparent 70%,
+            var(--color-yellow) 70%
+        );
+    }
+
+    p {
+        font-size: 1.25rem;
+        max-width: 600px;
+        color: var(--color-text);
+    }
+
+    .blog-list {
+        display: flex;
+        flex-direction: column;
+        gap: 3rem;
+    }
+
+    @media (max-width: 768px) {
+        h1 {
+            font-size: 2.5rem;
+        }
+    }
+</style>

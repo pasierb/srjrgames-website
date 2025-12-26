@@ -1,0 +1,315 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout>
+    <div class="about-page">
+        <header class="page-header">
+            <div class="container">
+                <span class="badge">Our Story</span>
+                <h1>
+                    Two Generations, <span class="highlight">One Mission</span>
+                </h1>
+                <p>
+                    Combining decades of experience with fresh creativity to
+                    build games that families love.
+                </p>
+            </div>
+        </header>
+
+        <main class="container">
+            <section class="team-section">
+                <div class="member-card">
+                    <div class="image-placeholder">
+                        <div class="placeholder-content">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="64"
+                                height="64"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                ><path
+                                    d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"
+                                ></path><circle cx="12" cy="7" r="4"
+                                ></circle></svg
+                            >
+                            <span>Sr. (Dad)</span>
+                        </div>
+                    </div>
+                    <div class="member-info">
+                        <h2>The Dad <span class="tag">Sr.</span></h2>
+                        <p>
+                            With over 20 years in software engineering, Michal
+                            brings the technical foundation to Sr. Jr. Games.
+                            He's passionate about clean code, robust
+                            architecture, and most importantly, teaching the
+                            next generation the joy of creation.
+                        </p>
+                        <p>
+                            From early assembly experiments to modern game
+                            engines, his journey has always been about sharing
+                            the magic of making things move on a screen.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="member-card reverse">
+                    <div class="image-placeholder">
+                        <div class="placeholder-content">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="64"
+                                height="64"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                ><path
+                                    d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"
+                                ></path><circle cx="12" cy="7" r="4"
+                                ></circle></svg
+                            >
+                            <span>Jr. (Son)</span>
+                        </div>
+                    </div>
+                    <div class="member-info">
+                        <h2>The Son <span class="tag">Jr.</span></h2>
+                        <p>
+                            Junior is the creative heart of the studio. Whether
+                            it's designing the perfect tie for a pigeon or
+                            coming up with wild level mechanics, his imagination
+                            drives everything we build.
+                        </p>
+                        <p>
+                            He's learning that while programming might seem like
+                            "magic" at first, it's actually a powerful tool to
+                            bring any idea to life.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="philosophy-section">
+                <div class="philosophy-card">
+                    <h2>Our Philosophy</h2>
+                    <div class="grid">
+                        <div class="point">
+                            <h3>Family First</h3>
+                            <p>
+                                We believe the best way to learn is together.
+                                Our games are built through collaboration and
+                                shared discovery.
+                            </p>
+                        </div>
+                        <div class="point">
+                            <h3>Creative Tech</h3>
+                            <p>
+                                Technology isn't just a skill—it's a medium for
+                                expression. We focus on the "why" behind the
+                                code.
+                            </p>
+                        </div>
+                        <div class="point">
+                            <h3>Playful Learning</h3>
+                            <p>
+                                Education shouldn't be a chore. If we're not
+                                having fun building it, it's not a Sr. Jr. Game.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+</Layout>
+
+<style>
+    .about-page {
+        padding-bottom: 8rem;
+    }
+
+    .page-header {
+        padding: 6rem 0 4rem;
+        background: var(--color-white);
+        border-bottom: 3px solid var(--color-navy);
+        margin-bottom: 4rem;
+    }
+
+    .container {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 0 2rem;
+    }
+
+    .badge {
+        display: inline-block;
+        background: var(--color-navy);
+        color: var(--color-white);
+        padding: 0.4rem 1rem;
+        border-radius: var(--radius-sm);
+        font-size: 0.9rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+    }
+
+    h1 {
+        font-size: 3.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .highlight {
+        color: var(--color-red);
+        background: linear-gradient(
+            180deg,
+            transparent 70%,
+            var(--color-yellow) 70%
+        );
+    }
+
+    p {
+        font-size: 1.25rem;
+        max-width: 600px;
+        color: var(--color-text);
+    }
+
+    .team-section {
+        display: flex;
+        flex-direction: column;
+        gap: 6rem;
+        margin-bottom: 8rem;
+    }
+
+    .member-card {
+        display: grid;
+        grid-template-columns: 1fr 1.5fr;
+        gap: 3rem;
+        align-items: center;
+    }
+
+    .member-card.reverse {
+        grid-template-columns: 1.5fr 1fr;
+    }
+
+    .member-card.reverse .image-placeholder {
+        order: 2;
+    }
+
+    .image-placeholder {
+        aspect-ratio: 1;
+        background: var(--color-white);
+        border: 3px solid var(--color-navy);
+        border-radius: var(--radius-lg);
+        box-shadow: 8px 8px 0 var(--color-navy);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .placeholder-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        color: var(--color-navy);
+        opacity: 0.3;
+    }
+
+    .placeholder-content span {
+        font-weight: 800;
+        font-family: var(--font-accent);
+    }
+
+    .member-info h2 {
+        font-size: 2.5rem;
+        margin-bottom: 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .tag {
+        font-size: 1rem;
+        background: var(--color-yellow);
+        padding: 0.2rem 0.8rem;
+        border-radius: var(--radius-sm);
+        border: 2px solid var(--color-navy);
+    }
+
+    .member-info p {
+        font-size: 1.15rem;
+        line-height: 1.6;
+        margin-bottom: 1.5rem;
+        max-width: 100%;
+    }
+
+    .philosophy-card {
+        background: var(--color-navy);
+        color: var(--color-white);
+        padding: 4rem;
+        border-radius: var(--radius-lg);
+        border: 3px solid var(--color-navy);
+        box-shadow: 12px 12px 0 var(--color-yellow);
+    }
+
+    .philosophy-card h2 {
+        color: var(--color-white);
+        font-size: 3rem;
+        margin-bottom: 3rem;
+        text-align: center;
+    }
+
+    .philosophy-card .grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 3rem;
+    }
+
+    .point h3 {
+        color: var(--color-yellow);
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .point p {
+        color: var(--color-white);
+        font-size: 1rem;
+        opacity: 0.9;
+    }
+
+    @media (max-width: 768px) {
+        .member-card,
+        .member-card.reverse {
+            grid-template-columns: 1fr;
+            text-align: center;
+        }
+
+        .member-card.reverse .image-placeholder {
+            order: 0;
+        }
+
+        .image-placeholder {
+            max-width: 300px;
+            margin: 0 auto;
+        }
+
+        .member-info h2 {
+            justify-content: center;
+        }
+
+        .philosophy-card .grid {
+            grid-template-columns: 1fr;
+        }
+
+        .philosophy-card {
+            padding: 2rem;
+        }
+    }
+</style>
