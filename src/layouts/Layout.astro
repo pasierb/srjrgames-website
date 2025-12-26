@@ -1,6 +1,26 @@
 ---
 import Navigation from "../components/Navigation.astro";
 import Footer from "../components/Footer.astro";
+
+interface Props {
+	title?: string;
+	description?: string;
+	image?: string;
+	canonicalURL?: URL | string;
+	type?: "website" | "article";
+}
+
+const {
+	title = "Sr. Jr. Games | Making games, learning together",
+	description = "Showcasing games developed by a father and son team. Resources for parents and kids interested in game development and tech education.",
+	image = "/og-image.jpg", // Need to ensure this exists or set a default
+	canonicalURL = Astro.url,
+	type = "website",
+} = Astro.props;
+
+const siteTitle = title.includes("Sr. Jr. Games")
+	? title
+	: `${title} | Sr. Jr. Games`;
 ---
 
 <!doctype html>
@@ -10,7 +30,26 @@ import Footer from "../components/Footer.astro";
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Sr. Jr. Games</title>
+
+		<!-- Primary Meta Tags -->
+		<title>{siteTitle}</title>
+		<meta name="title" content={siteTitle} />
+		<meta name="description" content={description} />
+		<link rel="canonical" href={canonicalURL} />
+
+		<!-- Open Graph / Facebook -->
+		<meta property="og:type" content={type} />
+		<meta property="og:url" content={Astro.url} />
+		<meta property="og:title" content={siteTitle} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content={new URL(image, Astro.url)} />
+
+		<!-- Twitter -->
+		<meta property="twitter:card" content="summary_large_image" />
+		<meta property="twitter:url" content={Astro.url} />
+		<meta property="twitter:title" content={siteTitle} />
+		<meta property="twitter:description" content={description} />
+		<meta property="twitter:image" content={new URL(image, Astro.url)} />
 
 		<!-- Fonts -->
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
