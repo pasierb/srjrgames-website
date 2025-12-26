@@ -1,33 +1,9 @@
 ---
+import { getCollection } from "astro:content";
 import Layout from "../layouts/Layout.astro";
 import ProjectCard from "../components/ProjectCard.astro";
 
-const projects = [
-    {
-        title: "Digeon's Quest",
-        description:
-            "A retro-themed pixel art platformer starring a pigeon with a tie. Built with Godot.",
-        image: "/avatar.jpg", // Placeholder until real images are added
-        url: "#",
-        tags: ["Game", "Pixel Art", "Godot"],
-    },
-    {
-        title: "Crayon Chaos",
-        description:
-            "A creative drawing game for kids where your drawings come to life to solve puzzles.",
-        image: "/avatar.jpg",
-        url: "#",
-        tags: ["Game", "Educational", "Phaser"],
-    },
-    {
-        title: "Family Game Dev Pack",
-        description:
-            "A collection of assets and templates to start your own game development journey with your kids.",
-        image: "/avatar.jpg",
-        url: "#",
-        tags: ["Resources", "Templates"],
-    },
-];
+const projects = await getCollection("projects");
 ---
 
 <Layout>
@@ -45,7 +21,7 @@ const projects = [
 
         <main class="container">
             <div class="project-grid">
-                {projects.map((project) => <ProjectCard {...project} />)}
+                {projects.map((project) => <ProjectCard {...project.data} />)}
             </div>
         </main>
     </div>

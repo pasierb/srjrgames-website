@@ -4,10 +4,11 @@ interface Props {
     description: string;
     image: string;
     url: string;
+    status: string;
     tags?: string[];
 }
 
-const { title, description, image, url, tags = [] } = Astro.props;
+const { title, description, image, url, status, tags = [] } = Astro.props;
 ---
 
 <div class="project-card">
@@ -15,8 +16,11 @@ const { title, description, image, url, tags = [] } = Astro.props;
         <img src={image} alt={title} />
     </div>
     <div class="content">
-        <div class="tags">
-            {tags.map((tag) => <span class="tag">{tag}</span>)}
+        <div class="header-row">
+            <div class="tags">
+                {tags.map((tag) => <span class="tag">{tag}</span>)}
+            </div>
+            <span class="status-badge">{status}</span>
         </div>
         <h3>{title}</h3>
         <p>{description}</p>
@@ -82,11 +86,29 @@ const { title, description, image, url, tags = [] } = Astro.props;
         flex-direction: column;
     }
 
+    .header-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 1rem;
+    }
+
     .tags {
         display: flex;
         gap: 0.5rem;
-        margin-bottom: 1rem;
         flex-wrap: wrap;
+    }
+
+    .status-badge {
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        padding: 0.2rem 0.5rem;
+        background: var(--color-yellow);
+        color: var(--color-navy);
+        border: 2px solid var(--color-navy);
+        border-radius: var(--radius-sm);
+        white-space: nowrap;
     }
 
     .tag {
