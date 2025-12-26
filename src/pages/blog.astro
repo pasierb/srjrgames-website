@@ -1,33 +1,24 @@
 ---
+import { getCollection } from "astro:content";
 import Layout from "../layouts/Layout.astro";
 import BlogCard from "../components/BlogCard.astro";
 
-const posts = [
-    {
-        title: "Starting our first Godot project together",
-        description:
-            "How we decided on Godot and the first steps of building 'Digeon's Quest'. Tips on keeping it fun for kids.",
-        date: "Dec 20, 2025",
-        author: "Sr.",
-        url: "#",
-    },
-    {
-        title: "Tech education or just playing games?",
-        description:
-            "A deep dive into why game development is the perfect vehicle for teaching programming, logic, and creativity.",
-        date: "Dec 15, 2025",
-        author: "Sr.",
-        url: "#",
-    },
-    {
-        title: "My favorite part of building Digeon",
-        description:
-            "Junior shares his thoughts on designing levels and making sure the pigeon has the right kind of tie.",
-        date: "Dec 10, 2025",
-        author: "Jr.",
-        url: "#",
-    },
-];
+const posts = await getCollection("blog");
+const sortedPosts = posts.sort(
+    (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+
+const formattedPosts = sortedPosts.map((post) => ({
+    title: post.data.title,
+    description: post.data.description,
+    date: post.data.pubDate.toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+    }),
+    author: post.data.author,
+    url: `/blog/${post.id}`,
+}));
 ---
 
 <Layout>
@@ -45,7 +36,7 @@ const posts = [
 
         <main class="container">
             <div class="blog-list">
-                {posts.map((post) => <BlogCard {...post} />)}
+                {formattedPosts.map((post) => <BlogCard {...post} />)}
             </div>
         </main>
     </div>
