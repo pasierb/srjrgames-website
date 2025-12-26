@@ -20,11 +20,13 @@ var youtube = "https://www.youtube.com/@SrJrGames";
         </header>
 
         <main class="container">
-            <div class="contact-grid">
+            <div class="contact-content">
                 <div class="contact-info">
                     <div class="info-card">
                         <h3>Email Us</h3>
-                        <a href="mailto:{email}" class="email-link">{email}</a>
+                        <a href={`mailto:${email}`} class="email-link"
+                            >{email}</a
+                        >
                     </div>
 
                     <div class="info-card">
@@ -76,43 +78,6 @@ var youtube = "https://www.youtube.com/@SrJrGames";
                             </a>
                         </div>
                     </div>
-                </div>
-
-                <div class="contact-form-container">
-                    <form class="contact-form">
-                        <div class="form-group">
-                            <label for="name">Name</label>
-                            <input
-                                type="text"
-                                id="name"
-                                name="name"
-                                placeholder="Your Name"
-                                required
-                            />
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input
-                                type="email"
-                                id="email"
-                                name="email"
-                                placeholder="your@email.com"
-                                required
-                            />
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Message</label>
-                            <textarea
-                                id="message"
-                                name="message"
-                                rows="5"
-                                placeholder="What's on your mind?"
-                                required></textarea>
-                        </div>
-                        <button type="submit" class="submit-btn"
-                            >Send Message</button
-                        >
-                    </form>
                 </div>
             </div>
         </main>
@@ -168,11 +133,9 @@ var youtube = "https://www.youtube.com/@SrJrGames";
         color: var(--color-text);
     }
 
-    .contact-grid {
-        display: grid;
-        grid-template-columns: 0.8fr 1.2fr;
-        gap: 4rem;
-        align-items: start;
+    .contact-content {
+        max-width: 600px;
+        margin: 0 auto;
     }
 
     .info-card {
@@ -231,75 +194,18 @@ var youtube = "https://www.youtube.com/@SrJrGames";
         box-shadow: 6px 6px 0 var(--color-navy);
     }
 
-    .contact-form {
-        background: var(--color-white);
-        padding: 3rem;
-        border-radius: var(--radius-lg);
-        border: 3px solid var(--color-navy);
-        box-shadow: 10px 10px 0 var(--color-navy);
-    }
-
-    .form-group {
-        margin-bottom: 1.5rem;
-    }
-
-    .form-group label {
-        display: block;
-        font-weight: 800;
-        margin-bottom: 0.5rem;
-        font-family: var(--font-accent);
-        color: var(--color-navy);
-    }
-
-    .form-group input,
-    .form-group textarea {
-        width: 100%;
-        padding: 1rem;
-        border-radius: var(--radius-sm);
-        border: 3px solid var(--color-navy);
-        font-family: var(--font-primary);
-        font-size: 1rem;
-        background-color: var(--color-bg);
-    }
-
-    .form-group input:focus,
-    .form-group textarea:focus {
-        outline: none;
-        border-color: var(--color-red);
-        box-shadow: 0 0 0 3px rgba(255, 77, 77, 0.1);
-    }
-
-    .submit-btn {
-        width: 100%;
-        padding: 1.25rem;
-        border-radius: var(--radius-md);
-        background-color: var(--color-yellow);
-        color: var(--color-navy);
-        font-weight: 800;
-        font-family: var(--font-accent);
-        font-size: 1.1rem;
-        border: 3px solid var(--color-navy);
-        box-shadow: 6px 6px 0 var(--color-navy);
-        cursor: pointer;
-        transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    }
-
     .submit-btn:hover {
         transform: translate(-3px, -3px);
         box-shadow: 9px 9px 0 var(--color-navy);
     }
 
     @media (max-width: 968px) {
-        .contact-grid {
-            grid-template-columns: 1fr;
+        .contact-content {
+            max-width: 100%;
         }
 
         .page-header h1 {
             font-size: 2.5rem;
-        }
-
-        .contact-form {
-            padding: 2rem;
         }
     }
 </style>
