@@ -20,25 +20,80 @@
 </div>
 
 <script is:inline>
-    (function () {
+    (async function () {
         const STORAGE_KEY = "ga_consent";
         const banner = document.getElementById("cookie-consent-banner");
         const acceptBtn = document.getElementById("accept-cookies");
         const declineBtn = document.getElementById("decline-cookies");
 
+        const EU_COUNTRIES = [
+            "AT",
+            "BE",
+            "BG",
+            "HR",
+            "CY",
+            "CZ",
+            "DK",
+            "EE",
+            "FI",
+            "FR",
+            "DE",
+            "GR",
+            "HU",
+            "IE",
+            "IT",
+            "LV",
+            "LT",
+            "LU",
+            "MT",
+            "NL",
+            "PL",
+            "PT",
+            "RO",
+            "SK",
+            "SI",
+            "ES",
+            "SE",
+            "GB",
+            "IS",
+            "LI",
+            "NO",
+            "CH", // UK and EFTA
+        ];
+
         function setConsent(status) {
             localStorage.setItem(STORAGE_KEY, status);
             banner.classList.add("hidden");
-
+            banner.style.display = "none";
             // Dispatch event for Layout.astro to handle GA loading
             window.dispatchEvent(
                 new CustomEvent("cookie-consent-updated", { detail: status }),
             );
         }
 
-        const currentConsent = localStorage.getItem(STORAGE_KEY);
-        if (!currentConsent) {
+        async function shouldShowBanner() {
+            const currentConsent = localStorage.getItem(STORAGE_KEY);
+            if (currentConsent) return false;
+
+            try {
+                const response = await fetch("https://ipapi.co/json/");
+                const data = await response.json();
+                return EU_COUNTRIES.includes(data.country_code);
+            } catch (error) {
+                console.warn(
+                    "GeoIP check failed, defaulting to showing banner:",
+                    error,
+                );
+                return true; // Default to show if check fails (safest for compliance)
+            }
+        }
+
+        if (await shouldShowBanner()) {
             banner.classList.remove("hidden");
+            banner.style.display = "block";
+        } else if (!localStorage.getItem(STORAGE_KEY)) {
+            // Not in EU and no choice made, default to granted
+            setConsent("granted");
         }
 
         acceptBtn.addEventListener("click", () => setConsent("granted"));
