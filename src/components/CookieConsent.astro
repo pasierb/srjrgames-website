@@ -1,0 +1,130 @@
+---
+
+---
+
+<div id="cookie-consent-banner" class="cookie-banner hidden">
+    <div class="container banner-content">
+        <div class="banner-text">
+            <p>
+                We use cookies to improve your experience and analyze our
+                traffic. Do you agree to our use of cookies?
+            </p>
+        </div>
+        <div class="banner-actions">
+            <button id="decline-cookies" class="btn btn-secondary"
+                >Decline</button
+            >
+            <button id="accept-cookies" class="btn btn-primary">Accept</button>
+        </div>
+    </div>
+</div>
+
+<script is:inline>
+    (function () {
+        const STORAGE_KEY = "ga_consent";
+        const banner = document.getElementById("cookie-consent-banner");
+        const acceptBtn = document.getElementById("accept-cookies");
+        const declineBtn = document.getElementById("decline-cookies");
+
+        function setConsent(status) {
+            localStorage.setItem(STORAGE_KEY, status);
+            banner.classList.add("hidden");
+
+            // Dispatch event for Layout.astro to handle GA loading
+            window.dispatchEvent(
+                new CustomEvent("cookie-consent-updated", { detail: status }),
+            );
+        }
+
+        const currentConsent = localStorage.getItem(STORAGE_KEY);
+        if (!currentConsent) {
+            banner.classList.remove("hidden");
+        }
+
+        acceptBtn.addEventListener("click", () => setConsent("granted"));
+        declineBtn.addEventListener("click", () => setConsent("denied"));
+    })();
+</script>
+
+<style>
+    .cookie-banner {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: var(--color-navy);
+        color: var(--color-white);
+        padding: 1.5rem 0;
+        z-index: 10000;
+        box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.2);
+        border-top: 3px solid var(--color-yellow);
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .cookie-banner.hidden {
+        transform: translateY(100%);
+        display: none;
+    }
+
+    .banner-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+        text-align: center;
+    }
+
+    @media (min-width: 768px) {
+        .banner-content {
+            flex-direction: row;
+            justify-content: space-between;
+            text-align: left;
+        }
+    }
+
+    .banner-text p {
+        margin: 0;
+        font-family: var(--font-primary);
+        font-size: 1rem;
+        line-height: 1.5;
+    }
+
+    .banner-actions {
+        display: flex;
+        gap: 1rem;
+        flex-shrink: 0;
+    }
+
+    .btn {
+        padding: 0.75rem 1.5rem;
+        border-radius: var(--radius-sm);
+        font-family: var(--font-accent);
+        font-weight: 600;
+        font-size: 0.9rem;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        border: none;
+        outline: none;
+    }
+
+    .btn-primary {
+        background-color: var(--color-yellow);
+        color: var(--color-navy);
+    }
+
+    .btn-primary:hover {
+        background-color: #f7ca18;
+        transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+        background-color: transparent;
+        color: var(--color-white);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .btn-secondary:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+        border-color: var(--color-white);
+    }
+</style>

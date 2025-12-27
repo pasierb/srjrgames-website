@@ -1,6 +1,7 @@
 ---
 import Navigation from "../components/Navigation.astro";
 import Footer from "../components/Footer.astro";
+import CookieConsent from "../components/CookieConsent.astro";
 
 interface Props {
 	title?: string;
@@ -59,6 +60,39 @@ const siteTitle = title.includes("Sr. Jr. Games")
 			href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&family=Lexend:wght@400;600;800&display=swap"
 			rel="stylesheet"
 		/>
+
+		<!-- Google Analytics -->
+		<script is:inline>
+			(function () {
+				const GA_ID = "G-JQKHJVH89P"; // Replace with your GA ID
+				const STORAGE_KEY = "ga_consent";
+
+				function loadGA() {
+					const script = document.createElement("script");
+					script.async = true;
+					script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_ID}`;
+					document.head.appendChild(script);
+
+					window.dataLayer = window.dataLayer || [];
+					function gtag() {
+						dataLayer.push(arguments);
+					}
+					gtag("js", new Date());
+					gtag("config", GA_ID);
+				}
+
+				const consent = localStorage.getItem(STORAGE_KEY);
+				if (consent === "granted") {
+					loadGA();
+				}
+
+				window.addEventListener("cookie-consent-updated", (event) => {
+					if (event.detail === "granted") {
+						loadGA();
+					}
+				});
+			})();
+		</script>
 	</head>
 	<body>
 		<Navigation />
@@ -66,6 +100,7 @@ const siteTitle = title.includes("Sr. Jr. Games")
 			<slot />
 		</main>
 		<Footer />
+		<CookieConsent />
 	</body>
 </html>
 
