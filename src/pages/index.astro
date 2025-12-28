@@ -3,6 +3,7 @@ import { getCollection } from "astro:content";
 import Hero from "../components/Hero.astro";
 import Layout from "../layouts/Layout.astro";
 import BlogCard from "../components/BlogCard.astro";
+import KofiWidget from "../components/KofiWidget.astro";
 
 const posts = await getCollection("blog");
 const latestPost = posts.sort(
@@ -67,6 +68,8 @@ const formattedPost = latestPost
 			</section>
 		)
 	}
+
+	<KofiWidget />
 </Layout>
 
 <style>

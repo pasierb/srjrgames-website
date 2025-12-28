@@ -97,6 +97,20 @@ const youtube = "https://www.youtube.com/@SrJrGames";
                     >
                 </a>
             </div>
+            <div class="kofi-button-container">
+                <script
+                    type="text/javascript"
+                    src="https://storage.ko-fi.com/cdn/widget/Widget_2.js"
+                ></script>
+                <script type="text/javascript">
+                    kofiwidget2.init(
+                        "Support us on Ko-fi",
+                        "#72a4f2",
+                        "Y8Y41R5W06",
+                    );
+                    kofiwidget2.draw();
+                </script>
+            </div>
             <a href="/contact" class="btn-footer-contact">Get in Touch</a>
         </div>
     </div>
@@ -259,6 +273,12 @@ const youtube = "https://www.youtube.com/@SrJrGames";
         transform: translate(-2px, -2px);
         box-shadow: 6px 6px 0 var(--color-white);
         background-color: var(--color-white);
+    }
+
+    .kofi-button-container {
+        margin-bottom: 1rem;
+        display: flex;
+        justify-content: flex-start;
     }
 
     /* Bottom Section */
