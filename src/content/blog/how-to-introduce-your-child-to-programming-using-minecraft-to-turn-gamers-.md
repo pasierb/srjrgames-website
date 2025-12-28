@@ -3,6 +3,7 @@ title: "How to Introduce Your Child to Programming: Using Minecraft to Turn Game
 description: 'Turning screen time into coding time: How we are using Minecraft Education Edition to introduce programming logic. Discover why we chose block-based coding to bridge the gap between "consumer" and "producer" for an 8-year-old.'
 pubDate: 2025-12-28
 author: "Michal (Sr.)"
+image: "./minecraft-education-hero.jpg"
 ---
 
 This Christmas marked a big milestone in the Sr. Jr. household. Fifi (Jr.) finally unwrapped his very first desktop PC.

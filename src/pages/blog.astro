@@ -17,6 +17,7 @@ const formattedPosts = sortedPosts.map((post) => ({
         day: "numeric",
     }),
     author: post.data.author,
+    image: post.data.image,
     url: `/blog/${post.id}`,
 }));
 ---
@@ -58,7 +59,7 @@ const formattedPosts = sortedPosts.map((post) => ({
     }
 
     .container {
-        max-width: 900px;
+        max-width: 1200px;
         margin: 0 auto;
         padding: 0 2rem;
     }
@@ -95,9 +96,11 @@ const formattedPosts = sortedPosts.map((post) => ({
     }
 
     .blog-list {
-        display: flex;
-        flex-direction: column;
+        display: grid;
+        grid-template-columns: 1fr;
         gap: 3rem;
+        max-width: 800px;
+        margin: 0 auto;
     }
 
     @media (max-width: 768px) {
@@ -111,6 +114,7 @@ const formattedPosts = sortedPosts.map((post) => ({
         }
 
         .blog-list {
+            grid-template-columns: 1fr;
             gap: 2rem;
         }
     }
