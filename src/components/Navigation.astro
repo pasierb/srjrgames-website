@@ -34,8 +34,9 @@
 
     if (toggle && links) {
         toggle.addEventListener("click", () => {
-            links.classList.toggle("active");
+            const isActive = links.classList.toggle("active");
             toggle.classList.toggle("active");
+            document.documentElement.classList.toggle("no-scroll", isActive);
         });
 
         // Close menu when clicking a link
@@ -44,10 +45,18 @@
             item.addEventListener("click", () => {
                 links.classList.remove("active");
                 toggle.classList.remove("active");
+                document.documentElement.classList.remove("no-scroll");
             });
         });
     }
 </script>
+
+<style is:global>
+    html.no-scroll,
+    body.no-scroll {
+        overflow: hidden;
+    }
+</style>
 
 <style>
     .nav {
