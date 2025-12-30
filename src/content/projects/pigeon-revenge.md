@@ -4,6 +4,7 @@ description: "Our first attempt at an infinite runner (and game development in g
 status: "In Development"
 tags: ["Infinite Runner", "Unity"]
 url: "#"
+itch_url: "https://srjrgames.itch.io/pigeon-revenge"
 image: "pigeon_revenge_full.jpg"
 ---
 

@@ -19,6 +19,7 @@ const projects = defineCollection({
         status: z.string(),
         tags: z.array(z.string()),
         url: z.string(),
+        itch_url: z.string().optional(),
         image: image(),
     }),
 });

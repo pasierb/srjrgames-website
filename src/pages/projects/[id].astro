@@ -2,6 +2,7 @@
 import { Image } from "astro:assets";
 import { getCollection, render } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
+import itchIoLogo from "../../assets/itch-io-logo.svg";
 
 export async function getStaticPaths() {
     const projects = await getCollection("projects");
@@ -103,6 +104,24 @@ const { Content } = await render(project);
                                             <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
                                         </>
                                     </svg>
+                                </a>
+                            )
+                        }
+                        {
+                            project.data.itch_url && (
+                                <a
+                                    href={project.data.itch_url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="btn-itch"
+                                >
+                                    <Image
+                                        src={itchIoLogo}
+                                        alt="itch.io"
+                                        width="24"
+                                        height="24"
+                                    />
+                                    Play on itch.io
                                 </a>
                             )
                         }
@@ -283,6 +302,33 @@ const { Content } = await render(project);
     .btn-primary:hover {
         transform: translate(-2px, -2px);
         box-shadow: 6px 6px 0 var(--color-navy);
+    }
+
+    .btn-itch {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.75rem;
+        background: #fa5c5c;
+        color: var(--color-white);
+        padding: 1rem;
+        border-radius: var(--radius-sm);
+        font-weight: 800;
+        font-family: var(--font-accent);
+        text-align: center;
+        border: 2px solid var(--color-navy);
+        box-shadow: 4px 4px 0 var(--color-navy);
+        margin-top: 1rem;
+    }
+
+    .btn-itch:hover {
+        transform: translate(-2px, -2px);
+        box-shadow: 6px 6px 0 var(--color-navy);
+    }
+
+    .btn-itch svg {
+        width: 24px;
+        height: 24px;
     }
 
     @media (max-width: 992px) {

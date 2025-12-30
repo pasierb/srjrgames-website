@@ -1,6 +1,7 @@
 ---
 import type { ImageMetadata } from "astro";
 import { Image, getImage } from "astro:assets";
+import itchIoLogo from "../assets/itch-io-logo.svg";
 
 interface Props {
     title: string;
@@ -10,9 +11,19 @@ interface Props {
     status: string;
     id: string;
     tags?: string[];
+    itch_url?: string;
 }
 
-const { title, description, image, url, status, id, tags = [] } = Astro.props;
+const {
+    title,
+    description,
+    image,
+    url,
+    status,
+    id,
+    tags = [],
+    itch_url,
+} = Astro.props;
 ---
 
 <div class="project-card">
@@ -28,21 +39,41 @@ const { title, description, image, url, status, id, tags = [] } = Astro.props;
         </div>
         <h3>{title}</h3>
         <p>{description}</p>
-        <a href={`/projects/${id}`} class="btn-project">
-            View Project
-            <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                ><path d="M5 12h14m-7-7 7 7-7 7"></path></svg
-            >
-        </a>
+        <div class="links">
+            <a href={`/projects/${id}`} class="btn-project">
+                View Details
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    ><path d="M5 12h14m-7-7 7 7-7 7"></path></svg
+                >
+            </a>
+            {
+                itch_url && (
+                    <a
+                        href={itch_url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="itch-link"
+                    >
+                        <Image
+                            src={itchIoLogo}
+                            alt="itch.io"
+                            width="20"
+                            height="20"
+                        />
+                        Play on itch.io
+                    </a>
+                )
+            }
+        </div>
     </div>
 </div>
 
@@ -150,6 +181,39 @@ const { title, description, image, url, status, id, tags = [] } = Astro.props;
 
     .btn-project:hover {
         gap: 0.75rem;
+    }
+
+    .links {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        margin-top: auto;
+    }
+
+    .itch-link {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        padding: 0.8rem 1rem;
+        background: #fa5c5c;
+        color: white;
+        border-radius: var(--radius-sm);
+        font-family: var(--font-accent);
+        font-weight: 800;
+        font-size: 0.9rem;
+        border: 2px solid var(--color-navy);
+        box-shadow: 4px 4px 0 var(--color-navy);
+        transition: all 0.2s ease;
+    }
+
+    .itch-link:hover {
+        transform: translate(-2px, -2px);
+        box-shadow: 6px 6px 0 var(--color-navy);
+    }
+
+    .itch-link img {
+        filter: brightness(0) invert(1);
     }
     @media (max-width: 480px) {
         .content {
